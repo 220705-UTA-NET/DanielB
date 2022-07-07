@@ -2,13 +2,17 @@ using System;
 
 
 class Player{
+    Random rand = new Random();
     public int health;
+    public int maxhealth;
     public int sp;
     public int dmglow;
     public int dmghigh;
     public string skill;
     public int skilldmglow;
     public int skilldmghigh;
+
+    public int healthpot = 3;
     
 
 
@@ -16,6 +20,7 @@ class Player{
         switch(i){
             case 1:
                 health = 50;
+                maxhealth = 50;
                 sp = 15;
                 skill = "Slash";
                 dmglow = 10;
@@ -25,6 +30,7 @@ class Player{
                 break;
             case 2:
                 health = 36;
+                maxhealth = 36;
                 sp = 35;
                 skill = "Magic Missle";
                 dmglow = 4;
@@ -34,6 +40,7 @@ class Player{
                 break;
             case 3:
                 health = 43;
+                maxhealth = 43;
                 sp = 25;
                 skill = "Snipe shot";
                 dmglow = 7;
@@ -42,11 +49,37 @@ class Player{
                 skilldmghigh = 14;
                 break;
         }
+        
+        
+        
 
     }
+    public int attack(){
+        return rand.Next(dmglow,dmghigh +1);
+    }
 
+    public int skillattack(){
+        if(skill == "Magic Missle"){
+            return (rand.Next(skilldmglow,skilldmghigh +1)+
+                    rand.Next(skilldmglow,skilldmghigh +1)+
+                    rand.Next(skilldmglow,skilldmghigh +1));
+        }
+        else{
+            return rand.Next(skilldmglow,skilldmghigh +1);
+        }
+    }
 
-
+    public void heal(){
+        if(healthpot > 0){
+           healthpot -=1; 
+           if(health + 15 > maxhealth){
+            health = maxhealth;
+           }
+           else{
+            health +=15;
+           }
+        }
+    }    
 
 
 }
