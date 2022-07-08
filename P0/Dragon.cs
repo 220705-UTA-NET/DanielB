@@ -25,7 +25,9 @@ namespace ProjectZero{
             }
         }
 
-        
+        public string displayHealth(){
+            return health.ToString();
+        }
 
     }
 }

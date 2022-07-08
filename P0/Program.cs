@@ -8,23 +8,21 @@ namespace ProjectZero{
 
         static void Main(string[] args){
             Dragon dragon  = new Dragon();
-            Player player  = new Player();
             bool test;
             int classname;
             do{
                 
-                Console.WriteLine("Welcome to Dragon Battle \nChoose your Class by typing the number next to the class \n1.Warrior      HP:50 SP:15\n2.Mage         HP:36 SP:35\n3.Gunslinger   HP:43 SP:25");
+                Console.WriteLine("\nWelcome to Dragon Battle \nChoose your Class by typing the number next to the class \n1.Warrior      HP:50 SP:15\n2.Mage         HP:36 SP:25\n3.Gunslinger   HP:43 SP:20\n");
                 string input = Console.ReadLine();
                 test = int.TryParse(input, out classname) && (input == "1" || input == "2" || input == "3"); 
             }while(!test);
-            
-            player.setClass(classname);          
+            Player player  = new Player(classname);      
             string action;
             string skills = player.skill;
+            skills = skills.ToLower();
             while(dragon.health >0 && player.health > 0){
                 do{
-                    Console.WriteLine("\nDragon Health:"+dragon.health+"\n \nHP:" + player.health + "/"+player.maxhealth+"   SP:" + player.sp + "   Health Potions:" + player.healthpot +  "\n \nActions: \nAttack   " + player.skill +  "(Uses 5 SP)      Heal(Heals 15)");
-                    skills = skills.ToLower();
+                    Console.WriteLine("\nDragon Health:"+dragon.displayHealth()+"\n \nHP:" + player.health + "/"+player.maxhealth+"   SP:" + player.sp + "   Health Potions:" + player.healthpot +  "\n \nActions: \nAttack   " + player.skill +  "(Uses 5 SP)      Heal(Heals 15)");
                     action = Console.ReadLine();
                     action = action.ToLower();
                     action = action.TrimEnd();
@@ -43,6 +41,9 @@ namespace ProjectZero{
                 }
                 player.health -= dragon.attack();
             }
+            // bool trueending = (dragon.health <=0 && player.health>0);
+            // bool badending = (dragon.health >0 && player.health<=0);
+            // bool herosending =(dragon.health <=0 && player.health<=0);
             if(dragon.health<=0){
                 Console.WriteLine("The dragon is defeated and the town is safe. \nYOU WIN!");
             }
