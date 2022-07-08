@@ -1,7 +1,7 @@
 using System;
 
 
-namespace Game{
+namespace ProjectZero{
 
     class Game{
         
