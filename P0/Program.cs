@@ -20,10 +20,10 @@ namespace ProjectZero{
             
             player.setClass(classname);          
             string action;
-            string skills = player.skill;;
+            string skills = player.skill;
             while(dragon.health >0 && player.health > 0){
                 do{
-                    Console.WriteLine("\nDragon Health:"+dragon.health+"\n \nHP:" + player.health + "   SP:" + player.sp + "   Health Potions:" + player.healthpot +  "\n \nActions: \nAttack   " + player.skill +  "(Uses 5 SP)      Heal(Heals 15)");
+                    Console.WriteLine("\nDragon Health:"+dragon.health+"\n \nHP:" + player.health + "/"+player.maxhealth+"   SP:" + player.sp + "   Health Potions:" + player.healthpot +  "\n \nActions: \nAttack   " + player.skill +  "(Uses 5 SP)      Heal(Heals 15)");
                     skills = skills.ToLower();
                     action = Console.ReadLine();
                     action = action.ToLower();

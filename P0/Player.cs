@@ -86,7 +86,7 @@ namespace ProjectZero{
                 }
                 return dmg;
             }
-            Console.WriteLine("\nYou try to use you skill but you are too tired to magange it.");
+            Console.WriteLine("\nYou try to use your skill but you are too tired to magange it.");
             return 0;
         }
 
