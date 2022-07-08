@@ -35,8 +35,8 @@ class Player{
                 skill = "Magic Missle";
                 dmglow = 4;
                 dmghigh = 6;
-                dmglow = 7;
-                dmghigh = 10;
+                skilldmglow = 21;
+                skilldmghigh = 30;
                 break;
             case 3:
                 health = 43;
@@ -59,14 +59,11 @@ class Player{
     }
 
     public int skillattack(){
-        if(skill == "Magic Missle"){
-            return (rand.Next(skilldmglow,skilldmghigh +1)+
-                    rand.Next(skilldmglow,skilldmghigh +1)+
-                    rand.Next(skilldmglow,skilldmghigh +1));
-        }
-        else{
+        if(sp!= 0){
+            sp -= 5;
             return rand.Next(skilldmglow,skilldmghigh +1);
         }
+        return 0;
     }
 
     public void heal(){
