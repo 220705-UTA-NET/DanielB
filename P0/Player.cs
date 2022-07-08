@@ -89,7 +89,7 @@ namespace ProjectZero{
                     return dmg;
                 }
             }
-            Console.WriteLine("\nYou try to use your skill but you are too tired to magange it.");
+            Console.WriteLine("\nYou try to use your skill but you are too tired to manage it.");
             return 0;
         }
 

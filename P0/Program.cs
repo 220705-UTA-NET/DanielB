@@ -45,10 +45,10 @@ namespace ProjectZero{
             // bool badending = (dragon.health >0 && player.health<=0);
             // bool herosending =(dragon.health <=0 && player.health<=0);
             if(dragon.health<=0){
-                Console.WriteLine("The dragon is defeated and the town is safe. \nYOU WIN!");
+                Console.WriteLine("\nThe dragon is defeated and the town is safe. \nYOU WIN!");
             }
             else if(player.health<=0){
-                Console.WriteLine("The dragon eats you and the town is burned \nYOU DIED");
+                Console.WriteLine("\nThe dragon eats you and the town is burned \nYOU DIED");
             }
             
         }
