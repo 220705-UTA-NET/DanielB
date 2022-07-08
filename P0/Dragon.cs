@@ -1,12 +1,13 @@
 using System;
 
 
-
+namespace ProjectZero{
     class Dragon{
         Random rand = new Random();
         public int health = 100;
         
         public int attack(){
+            //gets a random number to see if the dragon attack misses, hits, or crits 
             int randomattack = rand.Next(0,100);
             if(randomattack<25){
                 Console.WriteLine("The dragon swipes and just misses you");
@@ -27,3 +28,4 @@ using System;
         
 
     }
+}
