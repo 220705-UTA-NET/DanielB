@@ -99,6 +99,7 @@ namespace ProjectZero{
             else{
                 health +=15;
             }
+            Console.WriteLine("You drink your potion, revitalizing you");
             }
             else{
                 Console.WriteLine("\nYou wasted your turn trying to drink an empty bottle");
