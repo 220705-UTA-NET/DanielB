@@ -13,10 +13,12 @@ namespace ProjectZero{
         // private int skilldmglow;
         // private int skilldmghigh;
 
-        IDictionary<string, ((int,int),int)> skillList = new Dictionary<string, ((int,int),int)>();       
-        public void createSkillList(){
-            skillList.Add("Magic Missle", ((21,25), 5));
-            skillList.Add("Fireball",((45,50),15));
+        Dictionary<string, int> skillList = new Dictionary<string, int>();       
+        public Dictionary<string, int> createSkillList(){
+            skillList.Add("1:Magic Missle", (5)); //(21,25),
+            skillList.Add("2:Fireball",(15)); //(45,50),
+            return skillList;
+
         }
         public int attack(){
             //  return the dmg number for the basic attack based on the class
@@ -24,10 +26,12 @@ namespace ProjectZero{
             Console.WriteLine("\nYou swipe your dagger at the dragon for " + dmg + " damage.");
             return dmg;    
         }
-        // public int skillattack(){
-        //     // checks to see if you have enough sp to return the dmg number for the skill based on the class
-        //     displaySkillList();
-
+        public void skillattack(Dictionary<string, int> h){
+            // checks to see if you have enough sp to return the dmg number for the skill based on the class
+            Console.WriteLine("Type the number next the action you want to do");
+            displaySkillList(h);
+            string action = Console.ReadLine();
+            
             
         //         sp -= 5;
         //         int dmg = rand.Next(skilldmglow,skilldmghigh +1);
@@ -39,7 +43,8 @@ namespace ProjectZero{
             
         //     Console.WriteLine("\nYou try to use your skill but you are too tired to manage it.");
             
-        // }
+        }
+        
     }
 }
 
