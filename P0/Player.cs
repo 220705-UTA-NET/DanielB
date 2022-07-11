@@ -15,10 +15,11 @@ namespace ProjectZero{
 
         public int healthpot = 3;
 
-        int classname;
+        private int classId;
+        public string className;
         
-        public Player(int classname){
-            switch(classname){
+        public Player(int classId){
+            switch(classId){
                 case 1:
                     health = 50;
                     maxhealth = 50;
@@ -28,7 +29,8 @@ namespace ProjectZero{
                     dmghigh = 12;
                     skilldmglow = 15;
                     skilldmghigh = 20;
-                    this.classname = classname;
+                    this.classId = classId;
+                    className = "Warrior";
                     break;
                 case 2:
                     health = 36;
@@ -39,7 +41,8 @@ namespace ProjectZero{
                     dmghigh = 6;
                     skilldmglow = 21;
                     skilldmghigh = 25;
-                    this.classname = classname;
+                    this.classId = classId;
+                    className = "Mage";
                     break;
                 case 3:
                     health = 43;
@@ -50,7 +53,8 @@ namespace ProjectZero{
                     dmghigh = 9;
                     skilldmglow = 11;
                     skilldmghigh = 25;
-                    this.classname = classname;
+                    this.classId = classId;
+                    className = "Gunslinger";
                     break;
             }
         }
@@ -58,7 +62,7 @@ namespace ProjectZero{
         public int attack(){
             //  return the dmg number for the basic attack based on the class
             int dmg = rand.Next(dmglow,dmghigh +1);
-            switch(classname){
+            switch(classId){
                 case 1:
                     Console.WriteLine("\nYou swipe at the dragon with your axe for " + dmg + " damage.");
                     return dmg;
@@ -77,7 +81,7 @@ namespace ProjectZero{
             if(sp!= 0){
                 sp -= 5;
                 int dmg = rand.Next(skilldmglow,skilldmghigh +1);
-                switch(classname){
+                switch(classId){
                 case 1:
                     Console.WriteLine("\nYou slash at the dragon's neck with your axe for " + dmg + " damage.");
                     return dmg;
