@@ -3,25 +3,25 @@ using System.Collections.Generic;
 
 namespace ProjectZero{
 
-    class Mage : Player{
+    class Gunslinger : Player{
         Random rand = new Random();
-        public int health = 36;
-        public int maxhealth =36;
-        public int sp = 25;
-        private int dmglow = 4;
-        private int dmghigh = 6;
+        public int health = 43;
+        public int maxhealth = 43;
+        public int sp = 20;
+        private int dmglow = 7;
+        private int dmghigh = 9;
         // private int skilldmglow;
         // private int skilldmghigh;
 
         IDictionary<string, ((int,int),int)> skillList = new Dictionary<string, ((int,int),int)>();       
         public void createSkillList(){
-            skillList.Add("Magic Missle", ((21,25), 5));
-            skillList.Add("Fireball",((45,50),15));
+            skillList.Add("Snipe Shot", ((11,25), 5));
+            skillList.Add("Trick Shot",((45,50),15));
         }
         public int attack(){
             //  return the dmg number for the basic attack based on the class
             int dmg = rand.Next(dmglow,dmghigh +1);              
-            Console.WriteLine("\nYou swipe your dagger at the dragon for " + dmg + " damage.");
+            Console.WriteLine("\nYou shoot your pistols at the dragon for " + dmg + " damage.");
             return dmg;    
         }
         // public int skillattack(){
@@ -42,6 +42,3 @@ namespace ProjectZero{
         // }
     }
 }
-
-
-    
