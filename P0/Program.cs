@@ -8,8 +8,9 @@ namespace ProjectZero{
             bool test;
             int classId;
             Dictionary<string, int> skilllist = new Dictionary<string, int>();
+            Console.WriteLine("\nWelcome to Dragon Battle");
             do{
-                Console.WriteLine("\nWelcome to Dragon Battle \nChoose your Class by typing the number next to the class \n1.Warrior      HP:50 SP:15\n2.Mage         HP:36 SP:25\n3.Gunslinger   HP:43 SP:20\n");
+                Console.WriteLine("\nChoose your Class by typing the number next to the class \n1.Warrior      HP:50 SP:15\n2.Mage         HP:36 SP:25\n3.Gunslinger   HP:43 SP:20\n");
                 string input = Console.ReadLine();
                 test = int.TryParse(input, out classId) && (input == "1" || input == "2" || input == "3"); 
             }while(!test);
@@ -17,6 +18,7 @@ namespace ProjectZero{
             skilllist = player.createSkillList();
             Dragon dragon  = new Dragon();     
             playGame(dragon, player, skilllist);
+            
             
         }
 
@@ -43,6 +45,9 @@ namespace ProjectZero{
         static void playGame(Dragon dragon, Player player, Dictionary<string, int> skilllist){
             bool test;
             string action;
+            int count = 0;
+            Console.Beep();
+            Console.Clear();
             while(dragon.GetHealth() >0 && player.getHealth() > 0){
                 do{
                     Console.WriteLine("\nDragon Health:");
@@ -53,21 +58,23 @@ namespace ProjectZero{
                     action = action.TrimEnd();
                     test = (action=="attack" || action == "skills" || action == "heal");
                 }while(!test);
-                
-                
+                Console.Clear();
                 if(action == "attack"){
                     dragon.SetHealth(dragon.GetHealth() - player.attack());
                 }
                 else if(action == "skills"){
+                    Console.Clear();
                     dragon.SetHealth(dragon.GetHealth() - player.skillattack(skilllist));
                 }
                 else if(action == "heal"){
                     player.heal();
                 }
                 player.setHealth(player.getHealth()- dragon.attack()) ;
+                count += 1;
+                
             }
             Score score = new Score();
-            score.calculateScore(dragon,player);
+            score.calculateScore(dragon,player,count);
         }
     }
 }

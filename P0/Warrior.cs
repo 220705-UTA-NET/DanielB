@@ -38,6 +38,7 @@ namespace ProjectZero{
                 action = Console.ReadLine();
                 action = action.ToLower();
                 action = action.TrimEnd();
+                Console.Clear();
                 test = int.TryParse(action, out name) && (action == "1" || action == "2");
                 if (name == 1){
                     keyskill = "1:Slash";

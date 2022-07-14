@@ -36,10 +36,12 @@ namespace ProjectZero{
         }
 
         public void displayHealth(){
+            Console.BackgroundColor = ConsoleColor.Red;
             string currenthealth = new string ('|', this.health); 
             string maxhealth = new string('*', this.MAXhealth - this.health);
             string hpbar = String.Concat(currenthealth,maxhealth);
             Console.WriteLine(hpbar);
+            Console.BackgroundColor = ConsoleColor.Black;
         }
 
     }
