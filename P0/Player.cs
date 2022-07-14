@@ -1,23 +1,35 @@
 using System;
 
 namespace ProjectZero{
-    class Player{
+    abstract class Player{
         //fields
         
-        public int health;
+        private int health;
         public int maxhealth;
         public int sp;
-        private int dmglow;
-        private int dmghigh;
-        
+
+        public int getHealth(){
+            return health;
+        }
+        public int getSP(){
+            return sp;
+        }
+        public void setHealth(int x){
+            health = x;
+        }
+        public void setSp(int x){
+            sp = x;
+        }
+        public void setMaxHealth(int x){
+            maxhealth = x;
+        }
+
         Dictionary<string, int> skillList = new Dictionary<string, int>();
         // private int skilldmglow;
         // private int skilldmghigh;
 
-        List<string> skill = new List<string>();
         public int healthpot = 3;
-
-        int classname;
+        abstract public void initializeClass();
         
         // public Player(){
         //     switch(classname){
@@ -57,7 +69,7 @@ namespace ProjectZero{
         //     }
         // }
         //methods
-        public int attack(){
+        abstract public int attack();
         //     //  return the dmg number for the basic attack based on the class
         //     int dmg = rand.Next(dmglow,dmghigh +1);
         //     switch(classname){
@@ -71,10 +83,9 @@ namespace ProjectZero{
         //             Console.WriteLine("\nYou shoot your pistols at the dragon for " + dmg + " damage.");
         //             return dmg;
         //     }
-            return 0;    
-        }
 
-        public int skillattack(Dictionary<string, int> h){
+        abstract public int skillattack(Dictionary<string, int> h);
+            // displaySkillList(h);
         //     // checks to see if you have enough sp to return the dmg number for the skill based on the class
         //     if(sp!= 0){
         //         sp -= 5;
@@ -92,18 +103,18 @@ namespace ProjectZero{
         //         }
         //     }
         //     Console.WriteLine("\nYou try to use your skill but you are too tired to manage it.");
-            return 0;
-        }
+            // return 0;
+        
 
         public void heal(){
             //adds health to the player and makes sure it does not go over the max health for a player
             if(healthpot > 0){
                 healthpot -=1; 
-                if(health + 15 > maxhealth){
-                    health = maxhealth;
+                if(this.health + 15 > this.maxhealth){
+                    this.health = this.maxhealth;
                 }
                 else{
-                    health +=15;
+                    this.health +=15;
                 }
             Console.WriteLine("You drink your potion, revitalizing you");
             }
@@ -114,14 +125,12 @@ namespace ProjectZero{
         
 
         public void displaySkillList(Dictionary<string, int> h){
-            skill = h.Keys.ToList();
-            foreach(string s in skill){
-                Console.WriteLine(s);
+            
+            foreach(KeyValuePair<string, int> kvp in h){
+                Console.WriteLine("{0}:  {1} sp", kvp.Key, kvp.Value);
             }
-            Console.WriteLine("0:Exit");
         }  
-        public Dictionary<string, int> createSkillList(){
-            return skillList;
-        }
+        abstract public Dictionary<string, int> createSkillList();
+       
     }
 }
