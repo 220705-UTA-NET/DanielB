@@ -5,28 +5,50 @@ namespace ProjectZero{
 
     class Game{
         
-
+        // Player player = new Player();
+        Dictionary<string, int> h = new Dictionary<string, int>();
         static void Main(string[] args){
             bool test;
             int classname;
             Dictionary<string, int> h = new Dictionary<string, int>();
             do{
-                
                 Console.WriteLine("\nWelcome to Dragon Battle \nChoose your Class by typing the number next to the class \n1.Warrior      HP:50 SP:15\n2.Mage         HP:36 SP:25\n3.Gunslinger   HP:43 SP:20\n");
                 string input = Console.ReadLine();
                 test = int.TryParse(input, out classname) && (input == "1" || input == "2" || input == "3"); 
             }while(!test);
             Player player = createClass(classname);
-            // h = player.createSkillList();
-            Dragon dragon  = new Dragon();
-            Console.WriteLine(player.health);
+            h = player.createSkillList();
+            Dragon dragon  = new Dragon();     
+            playGame(dragon, player, h);
+            
+        }
 
-            // Player player  = new Player();      
+        static Player createClass(int classname){
+            if(classname == 1){
+                    Warrior player = new Warrior();
+                    player.initializeClass();
+                    return player;
+            }
+            else if(classname == 2){
+                    Mage player = new Mage();
+                    player.initializeClass();
+                    return player;
+            }
+
+            else if(classname == 3){
+                    Gunslinger player = new Gunslinger();
+                    player.initializeClass();
+                    return player;
+            }
+            return null;
+        } 
+        
+        static void playGame(Dragon dragon, Player player, Dictionary<string, int> h){
+            bool test;
             string action;
-            while(dragon.health >0 && player.health > 0){
+            while(dragon.health >0 && player.getHealth() > 0){
                 do{
-                    Console.WriteLine("Test");
-                    Console.WriteLine("\nDragon Health:"+dragon.displayHealth()+"\n \nHP:" + player.health + "/"+player.maxhealth+"   SP:" + player.sp + "   Health Potions:" + player.healthpot +  "\n \nActions: \nAttack   Skills      Heal(Heals 15)");
+                    Console.WriteLine("\nDragon Health:"+dragon.displayHealth()+"\n \nHP:" + player.getHealth() + "/"+player.maxhealth+"   SP:" + player.sp + "   Health Potions:" + player.healthpot +  "\n \nActions: \nAttack   Skills      Heal(Heals 15)");
                     action = Console.ReadLine();
                     action = action.ToLower();
                     action = action.TrimEnd();
@@ -43,7 +65,7 @@ namespace ProjectZero{
                 else if(action == "heal"){
                     player.heal();
                 }
-                player.health -= dragon.attack();
+                player.setHealth(player.getHealth()- dragon.attack()) ;
             }
             // bool trueending = (dragon.health <=0 && player.health>0);
             // bool badending = (dragon.health >0 && player.health<=0);
@@ -51,28 +73,9 @@ namespace ProjectZero{
             if(dragon.health<=0){
                 Console.WriteLine("\nThe dragon is defeated and the town is safe. \nYOU WIN!");
             }
-            else if(player.health<=0){
+            else if(player.getHealth()<=0){
                 Console.WriteLine("\nThe dragon eats you and the town is burned \nYOU DIED");
             }
-            
         }
-
-        static Player createClass(int classname){
-            if(classname == 1){
-                    Warrior player = new Warrior();
-                    return player;
-            }
-            else if(classname == 2){
-                    Mage player = new Mage();
-                    return player;
-
-            }
-            else if(classname == 2){
-                    Gunslinger player = new Gunslinger();
-                    return player;
-            }
-            return null;
-        } 
-        
     }
 }
