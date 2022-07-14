@@ -5,6 +5,7 @@ namespace ProjectZero{
     class Dragon{
         Random rand = new Random();
         public int health = 100;
+        public int MAXhealth = 100;
         
         public int attack(){
             //gets a random number to see if the dragon attack misses, hits, or crits 
@@ -25,8 +26,11 @@ namespace ProjectZero{
             }
         }
 
-        public string displayHealth(){
-            return health.ToString();
+        public void displayHealth(){
+            string currenthealth = new string ('|', this.health); 
+            string maxhealth = new string('*', this.MAXhealth - this.health);
+            string hpbar = String.Concat(currenthealth,maxhealth);
+            Console.WriteLine(hpbar);
         }
 
     }
