@@ -56,14 +56,14 @@ namespace ProjectZero{
             if(this.getSP() >= h[keyskill]){
                 switch(name){
                     case 1:
-                        int dmg = rand.Next(15,20);
+                        int dmg = rand.Next(15,21);
                         this.setSp(this.getSP() - h[keyskill]);
                         Console.WriteLine("\nYou slash at the dragon's neck with your axe for " + dmg + " damage.");
                         return dmg;
                     case 2:
-                        dmg = rand.Next(30,60);
+                        dmg = rand.Next(30,61);
                         this.setSp(this.getSP() - h[keyskill]);
-                        Console.WriteLine("\nYou summon lightning on to you axe to cleave at the dragon's head for " + dmg + " damage.");
+                        Console.WriteLine("\nYou summon lightning on to your axe to cleave at the dragon's head for " + dmg + " damage.");
                         return dmg;
                     default:
                         return 0;
