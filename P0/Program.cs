@@ -48,7 +48,9 @@ namespace ProjectZero{
             string action;
             while(dragon.health >0 && player.getHealth() > 0){
                 do{
-                    Console.WriteLine("\nDragon Health:"+dragon.displayHealth()+"\n \nHP:" + player.getHealth() + "/"+player.maxhealth+"   SP:" + player.sp + "   Health Potions:" + player.healthpot +  "\n \nActions: \nAttack   Skills      Heal(Heals 15)");
+                    Console.WriteLine("\nDragon Health:");
+                    dragon.displayHealth();
+                    Console.WriteLine("\n \nHP:" + player.getHealth() + "/"+player.maxhealth+"   SP:" + player.sp + "   Health Potions:" + player.healthpot +  "\n \nActions: \nAttack   Skills      Heal(Heals 15)");
                     action = Console.ReadLine();
                     action = action.ToLower();
                     action = action.TrimEnd();
