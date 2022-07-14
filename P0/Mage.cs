@@ -1,5 +1,4 @@
 using System;
-using System.Collections.Generic;
 
 namespace ProjectZero{
 
@@ -62,12 +61,12 @@ namespace ProjectZero{
             else if(this.getSP() >= h[keyskill]){
                 switch(name){
                     case 1:
-                        int dmg = rand.Next(21,25);
+                        int dmg = rand.Next(21,26);
                         this.setSp(this.getSP() - h[keyskill]);
                         Console.WriteLine("\nYou cast your arcane energy bolts at the dragon for " + dmg + " damage.");
                         return dmg;
                     case 2:
-                        dmg = rand.Next(45,50);
+                        dmg = rand.Next(45,51);
                         this.setSp(this.getSP() - h[keyskill]);
                         Console.WriteLine("\nYou summon a fiery ball of energy to char the dragon " + dmg + " damage.");
                         return dmg;
