@@ -4,8 +4,6 @@ using System;
 namespace ProjectZero{
 
     class Game{
-        
-        // Player player = new Player();
         Dictionary<string, int> h = new Dictionary<string, int>();
         static void Main(string[] args){
             bool test;
@@ -46,11 +44,11 @@ namespace ProjectZero{
         static void playGame(Dragon dragon, Player player, Dictionary<string, int> h){
             bool test;
             string action;
-            while(dragon.health >0 && player.getHealth() > 0){
+            while(dragon.GetHealth() >0 && player.getHealth() > 0){
                 do{
                     Console.WriteLine("\nDragon Health:");
                     dragon.displayHealth();
-                    Console.WriteLine("\n \nHP:" + player.getHealth() + "/"+player.maxhealth+"   SP:" + player.sp + "   Health Potions:" + player.healthpot +  "\n \nActions: \nAttack   Skills      Heal(Heals 15)");
+                    Console.WriteLine("\n \nHP:" + player.getHealth() + "/"+player.getMaxHealth()+"   SP:" + player.sp + "   Health Potions:" + player.healthpot +  "\n \nActions: \nAttack   Skills      Heal(Heals 15)");
                     action = Console.ReadLine();
                     action = action.ToLower();
                     action = action.TrimEnd();
@@ -59,27 +57,18 @@ namespace ProjectZero{
                 
                 
                 if(action == "attack"){
-                    dragon.health -= player.attack();
+                    dragon.SetHealth(dragon.GetHealth() - player.attack());
                 }
                 else if(action == "skills"){
-                    dragon.health -= player.skillattack(h);
+                    dragon.SetHealth(dragon.GetHealth() - player.skillattack(h));
                 }
                 else if(action == "heal"){
                     player.heal();
                 }
                 player.setHealth(player.getHealth()- dragon.attack()) ;
             }
-            bool trueending = (dragon.health <=0 && player.getHealth()>0);
-            bool badending = (dragon.health >0 && player.getHealth()<=0);
-            if(trueending){
-                Console.WriteLine("\nYou stand on top of the defeated dragon's body with all the gold knowing the town is safe. \nYOU WIN!");
-            }
-            else if(badending){
-                Console.WriteLine("\nThe dragon consumes you and burns the town to ashes. \nYOU DIED");
-            }
-            else{
-                Console.WriteLine("\nAs you and the dragon collide in one final blow, the town is saved but at the cost of your own life. \nYou Win?");
-            }   
+            Score score = new Score();
+            score.calculateScore(dragon,player);
         }
     }
 }
