@@ -5,11 +5,14 @@ namespace ProjectZero{
         //fields
         
         private int health;
-        public int maxhealth;
-        public int sp;
+        private int maxhealth;
+        private int sp;
 
         public int getHealth(){
             return health;
+        }
+        public int getMaxHealth(){
+            return maxhealth;
         }
         public int getSP(){
             return sp;
@@ -25,9 +28,6 @@ namespace ProjectZero{
         }
 
         Dictionary<string, int> skillList = new Dictionary<string, int>();
-        // private int skilldmglow;
-        // private int skilldmghigh;
-
         public int healthpot = 3;
         abstract public void initializeClass();
     

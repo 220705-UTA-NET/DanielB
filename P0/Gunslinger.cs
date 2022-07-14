@@ -4,14 +4,8 @@ namespace ProjectZero{
 
     class Gunslinger : Player{
         Random rand = new Random();
-        public int health;
-        public int maxhealth;
-        public int sp;
         private int dmglow = 7;
         private int dmghigh = 9;
-        
-        // private int skilldmglow;
-        // private int skilldmghigh;
 
         override public void initializeClass(){
             this.setHealth(43);
@@ -21,8 +15,8 @@ namespace ProjectZero{
 
         Dictionary<string, int> skillList = new Dictionary<string, int>();       
         override public Dictionary<string, int> createSkillList(){
-            skillList.Add("1:Snipe Shot", 5); //11,25),
-            skillList.Add("2:Trick Shot",15); //(45,50),
+            skillList.Add("1:Snipe Shot", 5); 
+            skillList.Add("2:Trick Shot",15); 
             return skillList;
         }
         override public int attack(){
@@ -31,7 +25,7 @@ namespace ProjectZero{
             Console.WriteLine("\nYou shoot your pistols at the dragon for " + dmg + " damage.");
             return dmg;    
         }
-        override public int skillattack(Dictionary<string, int> h){
+        override public int skillattack(Dictionary<string, int> skilllist){
             // checks to see if you have enough sp to return the dmg number for the skill based on the class
             bool test;
             string action;
@@ -39,7 +33,7 @@ namespace ProjectZero{
             string keyskill;
             do{
                 Console.WriteLine("\nSP:"+this.getSP()+ "\nType the number next the action you want to do");
-                displaySkillList(h);
+                displaySkillList(skilllist);
                 action = Console.ReadLine();
                 action = action.ToLower();
                 action = action.TrimEnd();
@@ -54,20 +48,16 @@ namespace ProjectZero{
                     keyskill = "";
                 }
             }while(!test);
-            if(keyskill == ""){
-                Console.WriteLine("HI");
-                return 0;
-            }
-            else if(this.getSP() >= h[keyskill]){
+            if(this.getSP() >= skilllist[keyskill]){
                 switch(name){
                     case 1:
                         int dmg = rand.Next(11,26);
-                        this.setSp(this.getSP() - h[keyskill]);
+                        this.setSp(this.getSP() - skilllist[keyskill]);
                         Console.WriteLine("\nYou aim your musket between the dragon's eyes for " + dmg + " damage.");
                         return dmg;
                     case 2:
                         dmg = rand.Next(45,51);
-                        this.setSp(this.getSP() - h[keyskill]);
+                        this.setSp(this.getSP() - skilllist[keyskill]);
                         Console.WriteLine("\nYou ricochet the bullet off of the cave wall to hit the dragon in the eye for " + dmg + " damage.");
                         return dmg;
                     default:

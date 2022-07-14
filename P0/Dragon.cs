@@ -4,9 +4,18 @@ using System;
 namespace ProjectZero{
     class Dragon{
         Random rand = new Random();
-        public int health = 100;
-        public int MAXhealth = 100;
-        
+        private int health = 100;
+        private int MAXhealth = 100;
+
+        public int getMaxHealth(){
+            return MAXhealth;
+        }
+        public int GetHealth(){
+            return health;
+        }
+        public void SetHealth(int x){
+            health = x;
+        }
         public int attack(){
             //gets a random number to see if the dragon attack misses, hits, or crits 
             int randomattack = rand.Next(0,100);
