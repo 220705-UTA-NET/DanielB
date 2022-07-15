@@ -8,7 +8,8 @@ namespace ProjectZero{
             bool test;
             int classId;
             Dictionary<string, int> skilllist = new Dictionary<string, int>();
-            Console.WriteLine("\nWelcome to Dragon Battle");
+            Console.WriteLine("\nWelcome to Dragon Battle\n(Press Enter to continue)");
+            Console.ReadLine();
             do{
                 Console.WriteLine("\nChoose your Class by typing the number next to the class \n1.Warrior      HP:50 SP:15\n2.Mage         HP:36 SP:25\n3.Gunslinger   HP:43 SP:20\n");
                 string input = Console.ReadLine();
