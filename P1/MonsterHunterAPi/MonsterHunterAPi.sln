@@ -5,6 +5,10 @@ VisualStudioVersion = 17.2.32630.192
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MonsterHunterAPi.API", "MonsterHunterAPi.API\MonsterHunterAPi.API.csproj", "{7437387D-3185-4E74-84CD-65BA951AB89E}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MonsterHunterApi.Data", "MonsterHunterApi.Data\MonsterHunterApi.Data.csproj", "{574B12AB-9B8D-466F-A811-608E2E2EC7AB}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MonsterHunterApi.Objects", "MonsterHunterApi.Objects\MonsterHunterApi.Objects.csproj", "{4CA902BD-EBD7-47C2-BD06-D7E2C5D4471E}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -15,6 +19,14 @@ Global
 		{7437387D-3185-4E74-84CD-65BA951AB89E}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{7437387D-3185-4E74-84CD-65BA951AB89E}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{7437387D-3185-4E74-84CD-65BA951AB89E}.Release|Any CPU.Build.0 = Release|Any CPU
+		{574B12AB-9B8D-466F-A811-608E2E2EC7AB}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{574B12AB-9B8D-466F-A811-608E2E2EC7AB}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{574B12AB-9B8D-466F-A811-608E2E2EC7AB}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{574B12AB-9B8D-466F-A811-608E2E2EC7AB}.Release|Any CPU.Build.0 = Release|Any CPU
+		{4CA902BD-EBD7-47C2-BD06-D7E2C5D4471E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{4CA902BD-EBD7-47C2-BD06-D7E2C5D4471E}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{4CA902BD-EBD7-47C2-BD06-D7E2C5D4471E}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{4CA902BD-EBD7-47C2-BD06-D7E2C5D4471E}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

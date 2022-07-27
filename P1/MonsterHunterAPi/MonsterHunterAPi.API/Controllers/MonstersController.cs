@@ -1,8 +1,7 @@
 ﻿using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
-using MonsterHunterApi;
-using MonsterHunterApi;
 using MonsterHunterAPI.Data;
+using MonsterHunterApi.Objects;
 
 namespace MonsterHunterApi.API.Controllers
 {
@@ -11,10 +10,10 @@ namespace MonsterHunterApi.API.Controllers
     public class MonstersController : ControllerBase
     {
         private readonly IRepository _repo;
-        private readonly ILogger<AssociatesController> _logger;
+        private readonly ILogger<MonstersController> _logger;
 
         // Constructor
-        public MonstersController(IRepository repo, ILogger<AssociatesController> logger)
+        public MonstersController(IRepository repo, ILogger<MonstersController> logger)
         {
             _repo = repo;
             _logger = logger;
@@ -22,15 +21,15 @@ namespace MonsterHunterApi.API.Controllers
 
         // Methods
 
-        // GET /api/associates
+        // GET /api/monsterss
         [HttpGet]
-        public async Task<ActionResult<IEnumerable<Associate>>> GetAllAssociates()
+        public async Task<ActionResult<IEnumerable<Monster>>> GetAllMonsters()
         {
-            IEnumerable<Associate> associates;
+            IEnumerable<Monster> monsters;
 
             try
             {
-                associates = await _repo.GetAllAssociatesAsync();
+                monsters = await _repo.GetAllMonstersAsync();
             }
             catch (Exception e)
             {
@@ -38,7 +37,7 @@ namespace MonsterHunterApi.API.Controllers
                 return StatusCode(500);
             }
 
-            return associates.ToList();
+            return monsters.ToList();
 
         }
     }
