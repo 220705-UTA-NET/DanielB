@@ -1,7 +1,7 @@
 using MonsterHunterApi.Data;
 using MonsterHunterAPI.Data;
 
-string connectionString = await File.ReadAllTextAsync("C:/Revature/DanielB/MonsterHunter");
+string connectionString = "Data Source=myfirstdatabase-beidels.database.windows.net;Initial Catalog=MonsterHunterRiseMonsters;Persist Security Info=True;User ID=beidelslogin;Password=WildRock2000";
 
 var builder = WebApplication.CreateBuilder(args);
 

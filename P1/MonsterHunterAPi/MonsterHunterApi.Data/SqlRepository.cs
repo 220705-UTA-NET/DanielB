@@ -23,7 +23,7 @@ namespace MonsterHunterApi.Data
             using SqlConnection connection = new(_connectionString);
             await connection.OpenAsync();
 
-            string cmdText = "SELECT Id, Name, MonsterType FROM Monster.Monsters;";
+            string cmdText = "SELECT Id, Name, MonsterType, Fire, Water, Thunder, Ice, Dragon FROM MonsterHunter.Monsters;";
 
             using SqlCommand cmd = new(cmdText, connection);
 
@@ -34,8 +34,13 @@ namespace MonsterHunterApi.Data
                 int id = reader.GetInt32(0);
                 string name = reader.GetString(1);
                 string monstertype = reader.GetString(2);
+                int fire = reader.GetInt32(3);
+                int water = reader.GetInt32(4);
+                int thunder = reader.GetInt32(5);
+                int ice = reader.GetInt32(6);
+                int dragon = reader.GetInt32(7);
 
-                Monster tmpMonster = new Monster(id, name, monstertype);
+                Monster tmpMonster = new Monster(id, name, monstertype, fire, water, thunder, ice, dragon);
                 result.Add(tmpMonster);
             }
 
