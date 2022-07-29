@@ -55,6 +55,9 @@ jobs:
             
       - name: Find Us
         run: cd P1/MonsterHunterAPi
+        
+      - name: Find Us
+        run: pwd
 
       - name: Build with dotnet
         run: dotnet build --configuration Release
