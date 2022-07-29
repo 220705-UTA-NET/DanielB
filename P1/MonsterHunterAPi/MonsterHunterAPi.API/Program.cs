@@ -1,7 +1,7 @@
 using MonsterHunterApi.Data;
 using MonsterHunterAPI.Data;
 
-string connectionString = "Data Source=myfirstdatabase-beidels.database.windows.net;Initial Catalog=MonsterHunterRiseMonsters;Persist Security Info=True;User ID=beidelslogin;Password=WildRock2000";
+string connectionString = File.ReadAllText("C:/Revature/220705/connectionstrings/MHR.txt");
 
 var builder = WebApplication.CreateBuilder(args);
 

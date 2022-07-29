@@ -6,7 +6,7 @@ using System.Data.SqlClient;
 namespace MonsterHunterApi.Data
 {
     public class SqlRepository : IRepository
-    { 
+    {
         private readonly string _connectionString;
         private readonly ILogger<SqlRepository> _logger;
 
@@ -23,7 +23,8 @@ namespace MonsterHunterApi.Data
             using SqlConnection connection = new(_connectionString);
             await connection.OpenAsync();
 
-            string cmdText = "SELECT Id, Name, MonsterType, Fire, Water, Thunder, Ice, Dragon FROM MonsterHunter.Monsters;";
+            string cmdText = "SELECT Id, Name, MonsterType, Fire, Water, Thunder, Ice, Dragon, TimesHunted FROM MonsterHunter.Monsters;";
+
 
             using SqlCommand cmd = new(cmdText, connection);
 
@@ -39,8 +40,9 @@ namespace MonsterHunterApi.Data
                 int thunder = reader.GetInt32(5);
                 int ice = reader.GetInt32(6);
                 int dragon = reader.GetInt32(7);
+                int timeshunted = reader.GetInt32(8);
 
-                Monster tmpMonster = new Monster(id, name, monstertype, fire, water, thunder, ice, dragon);
+                Monster tmpMonster = new Monster(id, name, monstertype, fire, water, thunder, ice, dragon, timeshunted);
                 result.Add(tmpMonster);
             }
 
@@ -49,6 +51,22 @@ namespace MonsterHunterApi.Data
             _logger.LogInformation("Executed GetAllAssociatesAsync, returned {0} results", result.Count);
 
             return result;
+        }
+        public async Task UpdateMonsterAsync(int id)
+        {
+            string cmdText = "UPDATE MonsterHunter.Monsters SET TimesHunted = TimesHunted + 1 WHERE Id = ";
+            string comdText = String.Concat(cmdText, id);
+            SqlConnection connection = new(_connectionString);
+            await connection.OpenAsync();
+
+            using SqlCommand cmd = new(comdText, connection);
+            using SqlDataAdapter sqlDataAdapter = new SqlDataAdapter();
+
+            // Add the parameters for the UpdateCommand.
+            sqlDataAdapter.UpdateCommand = cmd;
+
+            await connection.CloseAsync();
+
         }
     }
 }

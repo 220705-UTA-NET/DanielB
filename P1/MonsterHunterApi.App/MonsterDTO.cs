@@ -1,6 +1,6 @@
 namespace MonsterHunterApi.App
 {
-    class MonsterDTO
+    public class MonsterDTO
     {
         // Fields
         public int id { get; set; }
@@ -11,13 +11,14 @@ namespace MonsterHunterApi.App
         public int thunder { get; set; }
         public int ice { get; set; }
         public int dragon { get; set; }
+        public int timeshunted { get; set;}
 
         // Constructor
         public MonsterDTO()
         {
         }
 
-        public MonsterDTO(int id, string name, string monstertype, int fire,int water,int thunder,int ice,int dragon)
+        public MonsterDTO(int id, string name, string monstertype, int fire,int water,int thunder,int ice,int dragon, int timeshunted)
         {
             this.id = id;
             this.name = name;
@@ -27,12 +28,13 @@ namespace MonsterHunterApi.App
             this.thunder = thunder;
             this.ice = ice;
             this.dragon = dragon;
+            this.timeshunted = timeshunted;
         }
 
         // Methods
         public override string ToString()
         {
-            return $"{id} {name} {monsterType} {fire} {water} {thunder} {ice} {dragon}";
+            return $"{id} {name} {monsterType} {fire} {water} {thunder} {ice} {dragon} {timeshunted}";
         }
 
     }

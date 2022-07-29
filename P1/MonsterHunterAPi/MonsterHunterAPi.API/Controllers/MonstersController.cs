@@ -21,7 +21,7 @@ namespace MonsterHunterApi.API.Controllers
 
         // Methods
 
-        // GET /api/monsterss
+        // GET /api/monsters
         [HttpGet]
         public async Task<ActionResult<IEnumerable<Monster>>> GetAllMonsters()
         {
@@ -39,6 +39,14 @@ namespace MonsterHunterApi.API.Controllers
 
             return monsters.ToList();
 
+        }
+        
+        
+        // PUT /api/monsters
+        [HttpPut]
+        public void UpdateMonster(int id)
+        {
+            _repo.UpdateMonsterAsync(id);
         }
     }
 }

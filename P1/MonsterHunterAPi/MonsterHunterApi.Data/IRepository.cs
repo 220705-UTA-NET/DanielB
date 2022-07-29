@@ -6,8 +6,10 @@ namespace MonsterHunterAPI.Data
     {
         Task<IEnumerable<Monster>> GetAllMonstersAsync();
 
-        
-       // Task DeleteAssociatesAsync();
-        
+        Task UpdateMonsterAsync(int id);
+
+
+        // Task DeleteAssociatesAsync();
+
     }
 }
