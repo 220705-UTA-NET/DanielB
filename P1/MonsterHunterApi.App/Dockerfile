@@ -15,4 +15,4 @@ RUN dotnet publish "MonsterHunterApi.App.csproj" -c Release -o /app/publish /p:U
 FROM base AS final
 WORKDIR /app
 COPY --from=publish /app/publish .
-ENTRYPOINT ["dotnet", "P1.dll"]
+ENTRYPOINT ["dotnet", "MonsterHunterApi.App.dll"]

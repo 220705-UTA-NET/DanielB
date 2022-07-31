@@ -97,6 +97,7 @@ namespace MonsterHunterApi.App
                         while(!monstertype.Contains(input1)){
                             Console.WriteLine("Which type do you want to search? \nAmphibian, Bird Wyvern, Brute Wyvern, Carapaceon, Elder Dragon,\nFanged Beast, Fanged Wyvern, Flying Wyvern, Leviathan, Piscine Wyvern, Temnoceon\n");
                             input1 = Console.ReadLine();
+                            input1 = Ti.ToTitleCase(input1);
                             Console.WriteLine("\n");
                             if(monstertype.Contains(input1)){
                                 SearchMonsterType(input1);
