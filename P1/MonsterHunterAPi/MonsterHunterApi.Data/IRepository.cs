@@ -1,4 +1,6 @@
 ﻿using MonsterHunterApi.Objects;
+using Microsoft.AspNetCore.Mvc;
+
 
 namespace MonsterHunterAPI.Data
 {
@@ -6,10 +8,8 @@ namespace MonsterHunterAPI.Data
     {
         Task<IEnumerable<Monster>> GetAllMonstersAsync();
 
-        Task UpdateMonsterAsync(int id);
+        Task<StatusCodeResult> UpdateMonsterAsync(int id);
 
-
-        // Task DeleteAssociatesAsync();
 
     }
 }

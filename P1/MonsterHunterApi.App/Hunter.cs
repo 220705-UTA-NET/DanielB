@@ -1,3 +1,5 @@
+using System.Globalization;
+
 namespace MonsterHunterApi.App
 {
     public class Hunter{
@@ -5,11 +7,12 @@ namespace MonsterHunterApi.App
         Random rand = new Random();
 
         List<MonsterDTO> monster;
+        TextInfo Ti = new CultureInfo("en-US",false).TextInfo;
 
         List<string> monstertype = new List<string>(){
             "Amphibian","Bird Wyvern","Brute Wyvern","Carapaceon","Elder Dragon","Fanged Beast","Fanged Wyvern","Flying Wyvern","Leviathan","Piscine Wyvern","Temnoceon"
         };
-        List<int> weakness = new List<int>();
+        
         public Hunter(List<MonsterDTO> monster){
             this.monster = monster;
         }
@@ -36,18 +39,19 @@ namespace MonsterHunterApi.App
                         while(!mon.Contains(input)){
                             Console.WriteLine("Which monster do you want to hunt");
                             input = Console.ReadLine();
+                            input = Ti.ToTitleCase(input);
                             if(mon.Contains(input)){
                                 foreach(var item in monster){
                                     if(item.name == input){
                                         mons = item;
                                     }
-                                }
-                                Hunt(mons);
+                                }  
                             }
                             else{
                                 Console.WriteLine("\nYou may have spelled it incorrectly. Try again.");
-                            }
+                            }  
                         }
+                        Hunt(mons);
                         while(input != "y" && input != "n"){
                             Console.WriteLine("Do you want to go back to menu? [y/n]");
                             input = Console.ReadLine();
@@ -166,11 +170,12 @@ namespace MonsterHunterApi.App
 
         public void Hunt(MonsterDTO monstie){
             monstie.timeshunted += 1;
-            this.weakness.Add(monstie.fire); 
-            this.weakness.Add(monstie.water);
-            this.weakness.Add(monstie.thunder);
-            this.weakness.Add(monstie.ice);
-            this.weakness.Add(monstie.dragon);
+            List<int> weakness = new List<int>();
+            weakness.Add(monstie.fire); 
+            weakness.Add(monstie.water);
+            weakness.Add(monstie.thunder);
+            weakness.Add(monstie.ice);
+            weakness.Add(monstie.dragon);
             int highest = weakness.Max();
             if(monstie.fire == highest && monstie.water == highest && monstie.thunder == highest && monstie.ice == highest){
                 Console.WriteLine("When hunting a {0}, use any elemental weapon except for a dragon weapon.\n",monstie.name);

@@ -44,9 +44,22 @@ namespace MonsterHunterApi.API.Controllers
         
         // PUT /api/monsters
         [HttpPut]
-        public void UpdateMonster(int id)
+        public async Task<ActionResult> UpdateMonster(int id)
         {
-            _repo.UpdateMonsterAsync(id);
+            try
+            {
+                StatusCodeResult rep = await _repo.UpdateMonsterAsync(id); 
+                if (rep.StatusCode == 500) return StatusCode(500, "Monster could not be updated!");
+            }
+            catch (Exception e)
+            {
+                _logger.LogInformation("Error encountered: connecting to database in UpdateMonster");
+                _logger.LogError(e.Message);
+                return StatusCode(500, "Monster could not be inserted!");
+            }
+            return StatusCode(200);
         }
+        
+
     }
 }

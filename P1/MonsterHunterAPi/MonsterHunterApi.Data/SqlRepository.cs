@@ -1,7 +1,10 @@
-﻿using Microsoft.Extensions.Logging;
+﻿using Microsoft.AspNetCore.Mvc;
+using Microsoft.Extensions.Logging;
 using MonsterHunterApi.Objects;
 using MonsterHunterAPI.Data;
 using System.Data.SqlClient;
+
+
 
 namespace MonsterHunterApi.Data
 {
@@ -52,20 +55,32 @@ namespace MonsterHunterApi.Data
 
             return result;
         }
-        public async Task UpdateMonsterAsync(int id)
+        public async Task<StatusCodeResult> UpdateMonsterAsync(int id)
         {
-            string cmdText = "UPDATE MonsterHunter.Monsters SET TimesHunted = TimesHunted + 1 WHERE Id = ";
-            string comdText = String.Concat(cmdText, id);
+            string cmdText = "UPDATE MonsterHunter.Monsters SET TimesHunted = TimesHunted + 1 Where Id = @id";
             SqlConnection connection = new(_connectionString);
-            await connection.OpenAsync();
 
-            using SqlCommand cmd = new(comdText, connection);
-            using SqlDataAdapter sqlDataAdapter = new SqlDataAdapter();
 
-            // Add the parameters for the UpdateCommand.
-            sqlDataAdapter.UpdateCommand = cmd;
+            using SqlCommand cmd = new(cmdText, connection);
+            cmd.Parameters.AddWithValue("@id", id);
+            
+
+            try
+            {
+                await connection.OpenAsync();
+                await cmd.ExecuteNonQueryAsync();
+            }
+            catch (Exception e)
+            {
+
+                _logger.LogError("Error in UpdateMonster while trying to open a connection or execute non query"); 
+                _logger.LogInformation(e.Message);
+                return new StatusCodeResult(500);
+            }
 
             await connection.CloseAsync();
+            _logger.LogInformation("Executed UpdateMonsterAsync");
+            return new StatusCodeResult(200);
 
         }
     }
