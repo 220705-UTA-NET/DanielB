@@ -14,5 +14,23 @@ jobs:
 
     steps:
     - uses: actions/checkout@v3
-    - name: Build the Docker image
-      run: docker build . --file Dockerfile --tag my-image-name:$(date +%s)
+    - name: Build and push Docker images
+  # You may pin to the exact commit or the version.
+  # uses: docker/build-push-action@1cb9d22b932e4832bb29793b7777ec860fc1cde0
+      uses: docker/build-push-action@v3.1.0
+      with:
+          # Path to the Dockerfile
+          context: ./P1/MonsterHunterApi.App/
+          # List of tags
+          tags: p1 #commit 1
+    - name: Docker Login
+  # You may pin to the exact commit or the version.
+  # uses: docker/login-action@49ed152c8eca782a232dede0303416e8f356c37b
+      uses: docker/login-action@v2.0.0
+      with:
+          # Username used to log against the Docker registry
+          username: ${{secrets.DOCKER_USERNAME}}
+          # Password or personal access token used to log against the Docker registry
+          password: ${{ secrets.DOCKER_PASSWORD }}
+          # Log out from the Docker registry at the end of a job
+          logout: true
