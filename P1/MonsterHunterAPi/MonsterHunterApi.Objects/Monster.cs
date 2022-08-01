@@ -10,13 +10,13 @@
         public int Thunder { get; set; }
         public int Ice { get; set; }
         public int Dragon { get; set; }
-        public int TimesHunted { get; set; }
+        public int Timeshunted { get; set; }
 
         // Constructor
 
         public Monster() { }
 
-        public Monster(int id, string name, string monstertype, int fire, int water, int thunder, int ice, int dragon, int timesHunted)
+        public Monster(int id, string name, string monstertype, int fire, int water, int thunder, int ice, int dragon, int timeshunted)
         {
             Id = id;
             Name = name;
@@ -26,7 +26,7 @@
             Thunder = thunder;
             Ice = ice;
             Dragon = dragon;
-            TimesHunted = timesHunted;
+            Timeshunted = timeshunted;
         }
 
     }

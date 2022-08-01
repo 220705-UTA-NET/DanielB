@@ -40,8 +40,26 @@ namespace MonsterHunterApi.API.Controllers
             return monsters.ToList();
 
         }
-        
-        
+        [HttpGet("api/monsters/{id}")]
+        public async Task<ActionResult<Monster>> GetAMonster(int id)
+        {
+            Monster monster;
+
+            try
+            {
+                monster = await _repo.GetAMonsterAsync(id);
+            }
+            catch (Exception e)
+            {
+                _logger.LogError(e, e.Message);
+                return StatusCode(500);
+            }
+
+            return monster;
+
+        }
+
+
         // PUT /api/monsters
         [HttpPut]
         public async Task<ActionResult> UpdateMonster(int id)
