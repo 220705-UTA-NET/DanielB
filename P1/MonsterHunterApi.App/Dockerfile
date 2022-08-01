@@ -16,3 +16,4 @@ FROM base AS final
 WORKDIR /app
 COPY --from=publish /app/publish .
 ENTRYPOINT ["dotnet", "MonsterHunterApi.App.dll"]
+EXPOSE 3000
